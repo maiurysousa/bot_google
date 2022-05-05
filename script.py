@@ -10,5 +10,8 @@ campo = driver.find_element_by_xpath("//input[@aria-label='Pesquisar']") # Acha 
 campo.send_keys(pesquisa) # Método para digitar a pesquisa 
 campo.send_keys(Keys.ENTER) # Aperta o Enter
 
-resultados = driver.find_element_by_xpath("//div[@id='result-stats']") #Pega o texto de resultados
-print(resultados.text) # printa resultados encontrados
+resultados = driver.find_element_by_xpath("//div[@id='result-stats']").text #Pega o texto de resultados
+print(resultados) # printa resultados encontrados
+numero_resultados = int(resultados.split("Aproximadamente ")[1].split(' resultados')[0].replace('.','')) # Função paraecortar resultados
+maximo_paginas = numero_resultados / 10
+print("Número de páginas: %s" % (maximo_paginas))
